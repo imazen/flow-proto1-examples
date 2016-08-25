@@ -30,6 +30,7 @@ ${POST_FETCH_STEP}
 cp ${APP_NAME} ../${APP_NAME}
 cd ..
 
+chmod +x ./${APP_NAME}
 
 echo "Printing app help"
 ./${APP_NAME} --help
