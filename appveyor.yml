@@ -1,0 +1,6 @@
+
+build_script:
+  - set PATH=%PATH:C:\MinGW\bin;=%
+  - set PATH=%PATH:C:\Perl\bin;=%
+  - C:\msys64\usr\bin\sh.exe --login /c/projects/flow-proto1-examples/example.sh
+
