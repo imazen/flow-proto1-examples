@@ -5,14 +5,14 @@ set -x
 export POST_FETCH_STEP="echo 'no unzip required'"
 
 if [ "$(uname)" == "Darwin" ]; then
-    export FETCH_URL=https://s3-us-west-1.amazonaws.com/imageflow-nightlies/imazen/imageflow/336/336.3/artifacts/staging/flow-proto1
+    export FETCH_URL="https://s3-us-west-1.amazonaws.com/imageflow-nightlies/imazen/imageflow/336/336.3/artifacts/staging/flow-proto1"
     export APP_NAME=flow-proto1
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    export FETCH_URL=https://s3-us-west-1.amazonaws.com/imageflow-nightlies/imazen/imageflow/336/336.1/artifacts/staging/flow-proto1
+    export FETCH_URL="https://s3-us-west-1.amazonaws.com/imageflow-nightlies/imazen/imageflow/336/336.1/artifacts/staging/flow-proto1"
     export APP_NAME=flow-proto1
 elif [ "$(expr substr $(uname -s) 1 4)" == "MSYS" ]; then
-    export FETCH_URL=https://ci.appveyor.com/api/buildjobs/lhnljldy5k0a87mx/artifacts/imageflow-master-appveyorjob-268-0b95e51ac6a03b58c1ad96badcdce73b970d8233-x64.zip.zip
-    export POST_FETCH_STEP=7z e imageflow-master-appveyorjob-268-0b95e51ac6a03b58c1ad96badcdce73b970d8233-x64.zip.zip
+    export FETCH_URL="https://ci.appveyor.com/api/buildjobs/lhnljldy5k0a87mx/artifacts/imageflow-master-appveyorjob-268-0b95e51ac6a03b58c1ad96badcdce73b970d8233-x64.zip.zip"
+    export POST_FETCH_STEP="7z e imageflow-master-appveyorjob-268-0b95e51ac6a03b58c1ad96badcdce73b970d8233-x64.zip.zip"
     export APP_NAME=flow-proto1.exe
 else
   echo "Unknown platform $(uname -s)"
@@ -21,7 +21,7 @@ fi
 
 echo "Fetching app"
 
-rm ${APP_NAME}
+rm ${APP_NAME} || true
 rm -rf fetch_dir
 mkdir fetch_dir
 cd fetch_dir
