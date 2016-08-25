@@ -10,7 +10,7 @@ if [ "$(uname)" == "Darwin" ]; then
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     export FETCH_URL=https://s3-us-west-1.amazonaws.com/imageflow-nightlies/imazen/imageflow/336/336.1/artifacts/staging/flow-proto1
     export APP_NAME=flow-proto1
-elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+elif [ "$(expr substr $(uname -s) 1 4)" == "MSYS" ]; then
     export FETCH_URL=https://ci.appveyor.com/api/buildjobs/lhnljldy5k0a87mx/artifacts/imageflow-master-appveyorjob-268-0b95e51ac6a03b58c1ad96badcdce73b970d8233-x64.zip.zip
     export POST_FETCH_STEP=7z e imageflow-master-appveyorjob-268-0b95e51ac6a03b58c1ad96badcdce73b970d8233-x64.zip.zip
     export APP_NAME=flow-proto1.exe
@@ -33,10 +33,6 @@ cd ..
 
 echo "Printing app help"
 ./${APP_NAME} --help
-
-#https://s3-us-west-1.amazonaws.com/imageflow-nightlies/imazen/imageflow/335/335.3/artifacts/staging/flow-proto1
-
-#https://ci.appveyor.com/api/buildjobs/lryb0vms0cele5uo/artifacts/imageflow-master-appveyorjob-267-ae44c9754adaaac0794044c91a6d7bd240d69af9-x64.zip.zip
 
 wget -nc  http://s3-us-west-2.amazonaws.com/imageflow-resources/test_inputs/rings2.png
 wget -nc  http://s3-us-west-2.amazonaws.com/imageflow-resources/test_inputs/waterhouse.jpg
