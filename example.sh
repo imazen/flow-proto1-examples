@@ -5,16 +5,15 @@ set -x
 export POST_FETCH_STEP="echo 'no unzip required'"
 
 if [ "$(uname)" == "Darwin" ]; then
-    export FETCH_URL="https://s3-us-west-1.amazonaws.com/imageflow-nightlies/imazen/imageflow/336/336.3/artifacts/staging/flow-proto1"
+    export FETCH_URL="https://s3-us-west-2.amazonaws.com/imageflow-resources/prototype_releases/0.0.2/mac_64/flow-proto1"
     export APP_NAME=flow-proto1
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    #We can't use the ubuntu 14.04/gcc 5.4 build, as it fails to run with missing glibc 2.17/2.18
-    #Instead use the gcc 4.7/ ubuntu 12.04 build
-    export FETCH_URL="https://s3-us-west-1.amazonaws.com/imageflow-nightlies/imazen/imageflow/336/336.4/artifacts/staging/flow-proto1"
+    export FETCH_URL="https://s3-us-west-2.amazonaws.com/imageflow-resources/prototype_releases/0.0.2/linux_64/flow-proto1"
     export APP_NAME=flow-proto1
+    ldd --version
 elif [ "$(expr substr $(uname -s) 1 4)" == "MSYS" ]; then
-    export FETCH_URL="https://ci.appveyor.com/api/buildjobs/lhnljldy5k0a87mx/artifacts/imageflow-master-appveyorjob-268-0b95e51ac6a03b58c1ad96badcdce73b970d8233-x64.zip.zip"
-    export POST_FETCH_STEP="7z e imageflow-master-appveyorjob-268-0b95e51ac6a03b58c1ad96badcdce73b970d8233-x64.zip.zip"
+    export FETCH_URL="https://s3-us-west-2.amazonaws.com/imageflow-resources/prototype_releases/0.0.2/win_64/flow-proto1-0.0.2.zip"
+    export POST_FETCH_STEP="7z e flow-proto1-0.0.2.zip"
     export APP_NAME=flow-proto1.exe
 else
   echo "Unknown platform $(uname -s)"
@@ -33,6 +32,7 @@ cp ${APP_NAME} ../${APP_NAME}
 cd ..
 
 chmod +x ./${APP_NAME}
+
 
 echo "Printing app help"
 ./${APP_NAME} --help
