@@ -8,7 +8,9 @@ if [ "$(uname)" == "Darwin" ]; then
     export FETCH_URL="https://s3-us-west-1.amazonaws.com/imageflow-nightlies/imazen/imageflow/336/336.3/artifacts/staging/flow-proto1"
     export APP_NAME=flow-proto1
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    export FETCH_URL="https://s3-us-west-1.amazonaws.com/imageflow-nightlies/imazen/imageflow/336/336.1/artifacts/staging/flow-proto1"
+    #We can't use the ubuntu 14.04/gcc 5.4 build, as it fails to run with missing glibc 2.17/2.18
+    #Instead use the gcc 4.7/ ubuntu 12.04 build
+    export FETCH_URL="https://s3-us-west-1.amazonaws.com/imageflow-nightlies/imazen/imageflow/336/336.4/artifacts/staging/flow-proto1"
     export APP_NAME=flow-proto1
 elif [ "$(expr substr $(uname -s) 1 4)" == "MSYS" ]; then
     export FETCH_URL="https://ci.appveyor.com/api/buildjobs/lhnljldy5k0a87mx/artifacts/imageflow-master-appveyorjob-268-0b95e51ac6a03b58c1ad96badcdce73b970d8233-x64.zip.zip"
